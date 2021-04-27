@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <%- include ('partials/head.html')%>
+
+</head>
+<body>
+
+    <%- include ('partials/navigation.html')%> <br>
+
+    <div class="container ">
+        <div class="row">
+          <div class="col-sm-8 offset-md-2">
+            <div class="card animated flipInY">
+              <div class="card-header bg-dark text-white text-center">
+                <h3>Prueba</h3>
+              </div>
+              <div class="card-body">
+                <table class="table ">
+                    <thead>
+                      <h1 class="centro">Listado del los Hoteles</h1>
+                      <tr class="centro">
+                        <th scope="col">Numero de Hotel</th>
+                        <th scope="col">Nombre del Hotel</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Calificacion del Cliente</th>
+                        <th scope="col">Fucion</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for(let i = 0; i < datos.length; i++) { %>
+                      <tr class="centro">
+                          <th scope="row"><%= datos[i].hotelid %></th>
+                          <td><%= datos[i].hotelName %></td>
+                          <td><%= datos[i].categoria %></td>
+                          <td><%= datos[i].precio %></td>
+                          <td><%= datos[i].caldelcliente %></td>
+                          <td>
+                              <a href="/actualizarHotel" class="btn btn-warning" type="button">Actualizar</a><br><br>
+                              <a href="/deleteHotel/<%= datos[i].hotelid %>" class="btn btn-danger">Eliminar</a>
+                          </td>
+                        </tr><br>
+                      <% } %>
+                  </tbody>
+                  </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><br>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 offset-md-3">
+            <div class="card animated flipInY">
+              <div class="card-header bg-dark text-white text-center">
+                <h3>Filtrar Hoteles</h3>
+              </div>
+              <div class="card-body">
+                <form action="/filtrarCategoria" method="GET/POST">
+                  <div class="form-group">
+                    <h6>Filtrando por Categoría</h6>
+                  </div>
+                  <div class="form-group">
+                    <span>Las categorías es de 1 - 5</span>
+                    <input class="form-control" name="categoria" type="text" placeholder="1">
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-primary btn-block">Filtrar</button>
+                  </div>  
+                </form>
+
+                <form action="/filtrarAceodece" method="GET">
+                    <div class="form-group">
+                      <h6>Filtrando por Acendente o Decendente</h6>
+                    </div>
+                    <div class="form-group">
+                      <span>Acendente o Decendente</span>
+                      <select class="form-control" name="ordenado">
+                        <option selected value="ase">Acendente</option>
+                        <option value="desen">Decendente</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                        <a href="/index2" class="btn btn-primary btn-block">Enviar</a>
+                    </div>  
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><br>
+
+    <%- include ('partials/footer.html')%>
+
+</body>
+</html>
